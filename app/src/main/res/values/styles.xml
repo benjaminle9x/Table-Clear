@@ -10,7 +10,7 @@
 
     <!-- TODO 1: First set the AppTheme.Launcher Theme, use launch_screen in drawable directory -->
     <style name="AppTheme.Launcher">
-        <item name="android:windowBackground">@drawable/restaurant</item>
+        <item name="android:windowBackground">@drawable/tableclear2</item>
     </style>
 
 </resources>

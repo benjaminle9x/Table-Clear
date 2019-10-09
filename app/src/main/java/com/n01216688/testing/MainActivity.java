@@ -27,12 +27,8 @@ public class MainActivity extends AppCompatActivity {
         final Button button2 = findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Context context2 = getApplicationContext();
-                CharSequence text2 = "YOU SIGNED UP!";
-                int duration = Toast.LENGTH_SHORT;
+                //TO DO
 
-                Toast toast2 = Toast.makeText(context2, text2, duration);
-                toast2.show();
             }
         });
     }
