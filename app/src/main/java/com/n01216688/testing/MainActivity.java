@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -31,8 +34,12 @@ public class MainActivity extends AppCompatActivity {
         final Button button2 = findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //TO DO
+                Context context = getApplicationContext();
+                CharSequence text = "SIGNUP PAGE EMPTY";
+                int duration = Toast.LENGTH_SHORT;
 
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
         });
     }
@@ -48,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.item1:
-                Toast.makeText(this,"Item 1 selected",Toast.LENGTH_SHORT).show();
+                openHomePage();
                 return true;
             case R.id.setting:
                 openSettingPage();
@@ -66,5 +73,10 @@ public class MainActivity extends AppCompatActivity {
     public void openSettingPage(){
         Intent intent1 = new Intent(this,SettingScreen.class);
         startActivity(intent1);
+    }
+
+    public void openHomePage(){
+        Intent intent2 = new Intent(this,HomePage.class);
+        startActivity(intent2);
     }
 }
