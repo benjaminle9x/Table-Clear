@@ -5,29 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CustomerPage"
-    android:background="@drawable/white">
+    android:background="@drawable/red">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
-        android:text="TABLE CLEAR"
-        android:textSize="40dp"
+    <ViewFlipper
+        android:id="@+id/v_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginBottom="476dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="412dp"
+        android:layout_height="531dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="4dp"
+        android:scrollbars="vertical"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

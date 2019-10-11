@@ -10,9 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".HomePage"></activity>
-        <activity android:name=".SettingScreen" />
-        <activity android:name=".CustomerPage" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".HomePage"
+            android:parentActivityName=".MainActivity"></activity>
+
+        <activity android:name=".SettingScreen"
+            android:parentActivityName=".MainActivity"></activity>
+
+        <activity android:name=".CustomerPage"
+            android:parentActivityName=".MainActivity"></activity>
+
     </application>
 
 </manifest>

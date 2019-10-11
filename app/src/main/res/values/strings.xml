@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Table Clear</string>
+
+    <string name="linktosite">
+        <a href="https://knowyourmeme.com/memes/trollface">Developed By: Hoang Long Le, Daniel West, Hyoje Lee</a>
+    </string>
 </resources>

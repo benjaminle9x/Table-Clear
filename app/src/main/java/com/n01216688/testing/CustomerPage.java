@@ -10,14 +10,42 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 public class CustomerPage extends AppCompatActivity {
+
+    ViewFlipper v_flipper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_page);
+
+        getSupportActionBar().setTitle("Customer Page");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        int images[] = {R.drawable.pizza,R.drawable.delivery,R.drawable.walking};
+
+        v_flipper = findViewById(R.id.v_flipper);
+
+        //For loop
+        for(int i = 0; i < images.length; i++){
+            flipperImages(images[i]);
+        }
+    }
+
+    public void flipperImages(int image){
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource(image);
+        v_flipper.addView(imageView);
+        v_flipper.setFlipInterval(4000);    //4 seconds
+        v_flipper.setAutoStart(true);
+
+        //Animation
+        v_flipper.setInAnimation(this,android.R.anim.slide_in_left);
+        v_flipper.setOutAnimation(this,android.R.anim.slide_out_right);
     }
 
     @Override
