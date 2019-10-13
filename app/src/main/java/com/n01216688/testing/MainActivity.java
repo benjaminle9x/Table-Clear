@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView tView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
@@ -34,17 +36,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Context context = getApplicationContext();
-                CharSequence text = "SIGNUP PAGE EMPTY";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+        tView = (TextView)findViewById(R.id.register);
+        tView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v1){
+                openRegisterPage();
             }
         });
+
     }
 
     @Override
@@ -81,5 +80,10 @@ public class MainActivity extends AppCompatActivity {
     public void openHomePage(){
         Intent intent2 = new Intent(this,HomePage.class);
         startActivity(intent2);
+    }
+
+    public void openRegisterPage(){
+        Intent intent3 = new Intent(this,RegisterPage.class);
+        startActivity(intent3);
     }
 }
