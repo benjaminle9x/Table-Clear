@@ -14,12 +14,21 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView tView;
+    EditText inputEmail, inputPasswd;
+    Button button;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,61 +38,57 @@ public class MainActivity extends AppCompatActivity {
         TextView text = (TextView) findViewById(R.id.textView4);
         text.setMovementMethod(LinkMovementMethod.getInstance());
 
-        final Button button = findViewById(R.id.button);
+        tView = findViewById(R.id.register);
+        inputEmail = findViewById(R.id.editText2);
+        inputPasswd = findViewById(R.id.editText3);
+        button = findViewById(R.id.button);
+        fAuth = FirebaseAuth.getInstance();
+
         button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                openCustomerPage();
+                String email = inputEmail.getText().toString().trim();
+                String passwd = inputPasswd.getText().toString().trim();
+
+                if(email.isEmpty()) {
+                    inputEmail.setError("Email is required!");
+                    inputEmail.requestFocus();
+                }
+                else if(passwd.isEmpty()) {
+                    inputPasswd.setError("Password is required");
+                    inputPasswd.requestFocus();
+                }
+                else {
+                    fAuth.signInWithEmailAndPassword(email,passwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                                openCustomerPage();
+                            }
+                            else
+                                Toast.makeText(MainActivity.this, "Email or Password Incorrect!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
 
-        tView = (TextView)findViewById(R.id.register);
-        tView.setOnClickListener(new View.OnClickListener(){
+        tView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v1){
+            public void onClick(View v) {
                 openRegisterPage();
             }
         });
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.item1:
-                openHomePage();
-                return true;
-            case R.id.setting:
-                openSettingPage();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public void openCustomerPage() {
-        Intent intent = new Intent(this, CustomerPage.class);
-        startActivity(intent);
-    }
-
-    public void openSettingPage(){
-        Intent intent1 = new Intent(this,SettingScreen.class);
-        startActivity(intent1);
-    }
-
-    public void openHomePage(){
-        Intent intent2 = new Intent(this,HomePage.class);
-        startActivity(intent2);
     }
 
     public void openRegisterPage(){
-        Intent intent3 = new Intent(this,RegisterPage.class);
-        startActivity(intent3);
+        Intent i = new Intent(MainActivity.this, RegisterPage.class);
+        startActivity(i);
+    }
+
+    public void openCustomerPage(){
+        Intent i1 = new Intent(MainActivity.this, CustomerPage.class);
+        startActivity(i1);
     }
 }

@@ -9,15 +9,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class CustomerPage extends AppCompatActivity {
 
     ViewFlipper v_flipper;
-
+    Button logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +73,11 @@ public class CustomerPage extends AppCompatActivity {
         }
     }
 
+    public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();
+        openMainActivity();
+    }
+
     public void openHomePage(){
         Intent intent = new Intent(this,HomePage.class);
         startActivity(intent);
@@ -77,5 +86,10 @@ public class CustomerPage extends AppCompatActivity {
     public void openSettingScreen(){
         Intent intent1= new Intent(this,SettingScreen.class);
         startActivity(intent1);
+    }
+
+    public void openMainActivity() {
+        Intent i= new Intent(this,MainActivity.class);
+        startActivity(i);
     }
 }

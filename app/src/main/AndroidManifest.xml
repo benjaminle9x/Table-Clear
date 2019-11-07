@@ -21,10 +21,10 @@
         </activity>
         <activity
             android:name=".HomePage"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".CustomerPage" />
         <activity
             android:name=".SettingScreen"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".CustomerPage" />
         <activity
             android:name=".CustomerPage"
             android:parentActivityName=".MainActivity" />
