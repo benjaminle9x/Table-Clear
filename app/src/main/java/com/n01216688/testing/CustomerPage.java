@@ -38,6 +38,7 @@ public class CustomerPage extends AppCompatActivity {
         for(int i = 0; i < images.length; i++){
             flipperImages(images[i]);
         }
+        
     }
 
     public void flipperImages(int image){
