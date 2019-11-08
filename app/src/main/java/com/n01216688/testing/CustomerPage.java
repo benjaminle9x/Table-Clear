@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,11 +35,19 @@ public class CustomerPage extends AppCompatActivity {
         int images[] = {R.drawable.pizza,R.drawable.delivery,R.drawable.walking};
 
         v_flipper = findViewById(R.id.v_flipper);
+        logout = findViewById(R.id.logout);
 
         //For loop
         for(int i = 0; i < images.length; i++){
             flipperImages(images[i]);
         }
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
@@ -74,7 +84,7 @@ public class CustomerPage extends AppCompatActivity {
         }
     }
 
-    public void logout(View view) {
+    public void logout() {
         FirebaseAuth.getInstance().signOut();
         openMainActivity();
     }
@@ -92,5 +102,27 @@ public class CustomerPage extends AppCompatActivity {
     public void openMainActivity() {
         Intent i= new Intent(this,MainActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("You are about to Logout. Do you want to continue?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        logout();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 }

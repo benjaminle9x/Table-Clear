@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 String email = inputEmail.getText().toString().trim();
                 String passwd = inputPasswd.getText().toString().trim();
 
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         tView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 openRegisterPage();
             }
         });
