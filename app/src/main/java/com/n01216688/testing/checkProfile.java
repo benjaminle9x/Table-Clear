@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -140,9 +142,33 @@ public class checkProfile extends AppCompatActivity {
             case R.id.setting:
                 openSettingScreen();
                 return true;
+            case R.id.lout:
+                onBackPressed();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("You are about to Logout. Do you want to continue?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        logout();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     public void openHomePage(){
@@ -154,4 +180,11 @@ public class checkProfile extends AppCompatActivity {
         Intent intent1= new Intent(this,SettingScreen.class);
         startActivity(intent1);
     }
+
+    public void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
 }

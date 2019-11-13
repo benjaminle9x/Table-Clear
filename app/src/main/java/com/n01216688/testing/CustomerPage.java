@@ -29,11 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class CustomerPage extends AppCompatActivity {
 
     ViewFlipper v_flipper;
-    Button logout, save, viewProf;
-    FirebaseDatabase database;
-    DatabaseReference myref;
-    DataStructure mData;
-    EditText name, phone, address;
+    Button viewProf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,33 +41,12 @@ public class CustomerPage extends AppCompatActivity {
         int images[] = {R.drawable.pizza,R.drawable.delivery,R.drawable.walking};
 
         v_flipper = findViewById(R.id.v_flipper);
-        logout = findViewById(R.id.logout);
-        save = findViewById(R.id.save);
-        name = findViewById(R.id.inName);
-        phone = findViewById(R.id.inPhone);
-        address = findViewById(R.id.inAdd);
         viewProf = findViewById(R.id.viewProf);
-
-        getDatabase();
 
         //For loop
         for(int i = 0; i < images.length; i++){
             flipperImages(images[i]);
         }
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                writeData(name.getText(), phone.getText(), address.getText());
-            }
-        });
 
         viewProf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +84,9 @@ public class CustomerPage extends AppCompatActivity {
                 return true;
             case R.id.setting:
                 openSettingScreen();
+                return true;
+            case R.id.lout:
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -154,44 +132,6 @@ public class CustomerPage extends AppCompatActivity {
                 });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-    }
-
-    private void getDatabase() {
-        database = FirebaseDatabase.getInstance();
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        String path = "userdata/" + mAuth.getUid();
-        myref = database.getReference(path);
-    }
-
-    private DataStructure createData(Editable name, Editable phone, Editable address){
-        Long time = System.currentTimeMillis()/1000;
-        String timestamp = time.toString();
-        return new DataStructure(String.valueOf(name),
-                        String.valueOf(phone),
-                        String.valueOf(address),
-                        timestamp);
-    }
-
-    private void writeData(Editable name, Editable phone, Editable address) {
-        DataStructure mData = createData(name,phone,address);
-        myref.push().setValue(mData).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(), "Changes saved", Toast.LENGTH_LONG).show();
-                openRetrievingPage();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Saving failed", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    public void openRetrievingPage() {
-        Intent i3 = new Intent(CustomerPage.this,checkProfile.class);
-        startActivity(i3);
     }
 
     public void openCheckProfile() {

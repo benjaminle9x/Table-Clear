@@ -63,7 +63,7 @@ public class RegisterPage extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
                                 Toast.makeText(RegisterPage.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                                openCustomerPage();
+                                openModifyProfile();
                             }
                             else
                                 Toast.makeText(RegisterPage.this, "Account is not created! Please refresh the page", Toast.LENGTH_SHORT).show();
@@ -86,8 +86,8 @@ public class RegisterPage extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void openCustomerPage(){
-        Intent i1 = new Intent(RegisterPage.this,CustomerPage.class);
-        startActivity(i1);
+    public void openModifyProfile() {
+        Intent i2 = new Intent(RegisterPage.this, ModifyProfile.class);
+        startActivity(i2);
     }
 }

@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".checkProfile"
-            android:parentActivityName=".CustomerPage"></activity>
+        <activity android:name=".ModifyProfile"></activity>
+        <activity
+            android:name=".checkProfile"
+            android:parentActivityName=".CustomerPage" />
         <activity android:name=".RegisterPage" />
         <activity android:name=".MainActivity">
             <intent-filter>
