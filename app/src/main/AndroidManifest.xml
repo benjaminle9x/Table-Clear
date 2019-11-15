@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".ModifyProfile"></activity>
-        <activity
-            android:name=".checkProfile"
+        <activity android:name=".SettingScreen"></activity>
+        <activity android:name=".ModifyProfile" />
+        <activity android:name=".checkProfile"
             android:parentActivityName=".CustomerPage" />
         <activity android:name=".RegisterPage" />
         <activity android:name=".MainActivity">
@@ -24,14 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomePage"
-            android:parentActivityName=".CustomerPage" />
-        <activity
-            android:name=".SettingScreen"
-            android:parentActivityName=".CustomerPage" />
-        <activity
-            android:name=".CustomerPage"
-            android:parentActivityName=".MainActivity" />
+            android:name=".CustomerPage" />
     </application>
 
 </manifest>

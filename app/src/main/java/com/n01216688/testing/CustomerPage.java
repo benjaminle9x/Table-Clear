@@ -79,9 +79,6 @@ public class CustomerPage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         switch(item.getItemId()){
-            case R.id.item1:
-                openHomePage();
-                return true;
             case R.id.setting:
                 openSettingScreen();
                 return true;
@@ -96,11 +93,6 @@ public class CustomerPage extends AppCompatActivity {
     public void logout() {
         FirebaseAuth.getInstance().signOut();
         openMainActivity();
-    }
-
-    public void openHomePage(){
-        Intent intent = new Intent(this,HomePage.class);
-        startActivity(intent);
     }
 
     public void openSettingScreen(){

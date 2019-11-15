@@ -136,9 +136,6 @@ public class checkProfile extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         switch(item.getItemId()){
-            case R.id.item1:
-                openHomePage();
-                return true;
             case R.id.setting:
                 openSettingScreen();
                 return true;
@@ -171,10 +168,6 @@ public class checkProfile extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void openHomePage(){
-        Intent intent = new Intent(this,HomePage.class);
-        startActivity(intent);
-    }
 
     public void openSettingScreen(){
         Intent intent1= new Intent(this,SettingScreen.class);
