@@ -15,6 +15,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     EditText inputEmail, inputPasswd;
     Button button;
     FirebaseAuth fAuth;
+    ProgressBar pBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         inputPasswd = findViewById(R.id.editText3);
         button = findViewById(R.id.button);
         fAuth = FirebaseAuth.getInstance();
+        pBar = findViewById(R.id.progressBar);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,11 +58,13 @@ public class MainActivity extends AppCompatActivity {
                     inputEmail.setError("Email is required!");
                     inputEmail.requestFocus();
                 }
+
                 else if(passwd.isEmpty()) {
                     inputPasswd.setError("Password is required");
                     inputPasswd.requestFocus();
                 }
                 else {
+                    pBar.setVisibility(View.VISIBLE);
                     fAuth.signInWithEmailAndPassword(email,passwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

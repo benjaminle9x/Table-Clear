@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class RegisterPage extends AppCompatActivity {
     EditText mEmail, mPasswd;
     Button mSignup;
     FirebaseAuth fAuth;
+    ProgressBar pBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class RegisterPage extends AppCompatActivity {
         mPasswd = findViewById(R.id.password);
         mSignup = findViewById(R.id.singup);
         fAuth = FirebaseAuth.getInstance();
+        pBar = findViewById(R.id.progressBar2);
 
         if(fAuth.getCurrentUser() != null) {
             openMainActivity();
@@ -58,6 +61,7 @@ public class RegisterPage extends AppCompatActivity {
                     mPasswd.requestFocus();
                 }
                 else {
+                    pBar.setVisibility(View.VISIBLE);
                     fAuth.createUserWithEmailAndPassword(email,passwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
