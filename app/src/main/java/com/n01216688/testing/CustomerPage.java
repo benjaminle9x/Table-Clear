@@ -2,7 +2,9 @@ package com.n01216688.testing;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import android.animation.ArgbEvaluator;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,47 +29,71 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CustomerPage extends AppCompatActivity {
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
-    ViewFlipper v_flipper;
-    Button viewProf;
+public class CustomerPage extends AppCompatActivity {
+    ViewPager viewPager;
+    CustomerpageAdapter cpAdapter;
+    Integer[] colors = null;
+    List<Model> models;
+    ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_page);
 
-        getSupportActionBar().setTitle("Customer Page");
+        models = new ArrayList<>();
+        models.add(new Model(R.drawable.burger,"Burger"));
+        models.add(new Model(R.drawable.pizza,"Pizza"));
+        models.add(new Model(R.drawable.mexican,"Mexican"));
+        models.add(new Model(R.drawable.vietnamese,"Vietnamese"));
 
-        int images[] = {R.drawable.pizza,R.drawable.delivery,R.drawable.walking};
+        cpAdapter = new CustomerpageAdapter(models,this);
+        viewPager = findViewById(R.id.viewPager);
+        viewPager.setAdapter(cpAdapter);
+        viewPager.setPadding(40,0,40,0);
 
-        v_flipper = findViewById(R.id.v_flipper);
-        viewProf = findViewById(R.id.viewProf);
+        Integer[] colors_temp = {
+                getResources().getColor(R.color.color1),
+                getResources().getColor(R.color.color2),
+                getResources().getColor(R.color.color3),
+                getResources().getColor(R.color.color4)
+        };
 
-        //For loop
-        for(int i = 0; i < images.length; i++){
-            flipperImages(images[i]);
-        }
+        colors = colors_temp;
 
-        viewProf.setOnClickListener(new View.OnClickListener() {
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onClick(View v) {
-                openCheckProfile();
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(position < (cpAdapter.getCount() - 1) && position < (colors.length - 1)) {
+                    viewPager.setBackgroundColor(
+                            (Integer)argbEvaluator.evaluate(
+                                    positionOffset,
+                                    colors[position],
+                                    colors[position + 1]
+                            )
+                    );
+                } else {
+                    viewPager.setBackgroundColor(colors[colors.length - 1]);
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
 
-    }
+        getSupportActionBar().setTitle("Customer Page");
 
-    public void flipperImages(int image){
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundResource(image);
-        v_flipper.addView(imageView);
-        v_flipper.setFlipInterval(4000);    //4 seconds
-        v_flipper.setAutoStart(true);
-
-        //Animation
-        v_flipper.setInAnimation(this,android.R.anim.slide_in_left);
-        v_flipper.setOutAnimation(this,android.R.anim.slide_out_right);
     }
 
     @Override
@@ -81,6 +108,9 @@ public class CustomerPage extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.setting:
                 openSettingScreen();
+                return true;
+            case R.id.viewprofile:
+                openCheckProfile();
                 return true;
             case R.id.lout:
                 onBackPressed();
