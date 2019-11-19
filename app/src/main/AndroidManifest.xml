@@ -11,9 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".SettingScreen"></activity>
+        <activity android:name=".ProfileScreen1"
+            android:parentActivityName=".SettingScreen"></activity>
+        <activity android:name=".NotificationScreen"
+            android:parentActivityName=".SettingScreen" />
+        <activity android:name=".NewPassword1"
+            android:parentActivityName=".ProfileScreen1"/>
+        <activity android:name=".LanguageScreen"
+            android:parentActivityName=".SettingScreen"/>
+        <activity android:name=".EditProfile1"
+            android:parentActivityName=".ProfileScreen1"/>
+        <activity android:name=".SettingScreen"
+            android:parentActivityName=".CustomerPage"/>
         <activity android:name=".ModifyProfile" />
-        <activity android:name=".checkProfile"
+        <activity
+            android:name=".checkProfile"
             android:parentActivityName=".CustomerPage" />
         <activity android:name=".RegisterPage" />
         <activity android:name=".MainActivity">
@@ -23,8 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CustomerPage" />
+        <activity android:name=".CustomerPage" />
     </application>
 
 </manifest>
