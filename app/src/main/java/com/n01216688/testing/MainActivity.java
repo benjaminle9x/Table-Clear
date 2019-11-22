@@ -16,6 +16,8 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     FirebaseAuth fAuth;
     ProgressBar pBar;
+    RadioButton radioButton;
+    RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         fAuth = FirebaseAuth.getInstance();
         pBar = findViewById(R.id.progressBar);
+        radioGroup = findViewById(R.id.radio_group);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 String email = inputEmail.getText().toString().trim();
                 String passwd = inputPasswd.getText().toString().trim();
+
+                int radioId = radioGroup.getCheckedRadioButtonId();
+                radioButton = findViewById(radioId);
 
                 if(email.isEmpty()) {
                     inputEmail.setError("Email is required!");
@@ -63,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
                     inputPasswd.setError("Password is required");
                     inputPasswd.requestFocus();
                 }
-                else {
+
+                else{
                     pBar.setVisibility(View.VISIBLE);
                     fAuth.signInWithEmailAndPassword(email,passwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -97,5 +107,10 @@ public class MainActivity extends AppCompatActivity {
     public void openCustomerPage(){
         Intent i1 = new Intent(MainActivity.this, CustomerPage.class);
         startActivity(i1);
+    }
+
+    public void checkButton(View v){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = findViewById(radioId);
     }
 }

@@ -24,8 +24,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="404dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="416dp"
         android:text="Username"
         android:textColor="#F1F1F1"
         android:textSize="20dp"
@@ -36,8 +36,8 @@
         android:id="@+id/editText2"
         android:layout_width="222dp"
         android:layout_height="47dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="392dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="404dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,8 +47,8 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="340dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="352dp"
         android:text="Password"
         android:textColor="#F1F1F1"
         android:textSize="20dp"
@@ -59,8 +59,8 @@
         android:id="@+id/editText3"
         android:layout_width="222dp"
         android:layout_height="47dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="332dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="340dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +71,7 @@
         android:layout_width="291dp"
         android:layout_height="78dp"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="164dp"
         android:text="Login"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,28 +88,6 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="284dp"
-        android:text="Customer"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="284dp"
-        android:text="Manager"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
@@ -142,9 +120,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="180dp"
-        android:layout_marginBottom="116dp"
+        android:layout_marginBottom="108dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="319dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="252dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="checkButton"
+            android:text="Customer" />
+
+        <RadioButton
+            android:id="@+id/manager"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="100dp"
+            android:onClick="checkButton"
+            android:text="Manager" />
+
+    </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

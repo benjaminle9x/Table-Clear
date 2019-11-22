@@ -11,18 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".ProfileScreen1"
-            android:parentActivityName=".SettingScreen"></activity>
-        <activity android:name=".NotificationScreen"
+        <activity android:name=".ManagerPage"></activity>
+        <activity
+            android:name=".ProfileScreen1"
             android:parentActivityName=".SettingScreen" />
-        <activity android:name=".NewPassword1"
-            android:parentActivityName=".ProfileScreen1"/>
-        <activity android:name=".LanguageScreen"
-            android:parentActivityName=".SettingScreen"/>
-        <activity android:name=".EditProfile1"
-            android:parentActivityName=".ProfileScreen1"/>
-        <activity android:name=".SettingScreen"
-            android:parentActivityName=".CustomerPage"/>
+        <activity
+            android:name=".NotificationScreen"
+            android:parentActivityName=".SettingScreen" />
+        <activity
+            android:name=".NewPassword1"
+            android:parentActivityName=".ProfileScreen1" />
+        <activity
+            android:name=".LanguageScreen"
+            android:parentActivityName=".SettingScreen" />
+        <activity
+            android:name=".EditProfile1"
+            android:parentActivityName=".ProfileScreen1" />
+        <activity
+            android:name=".SettingScreen"
+            android:parentActivityName=".CustomerPage" />
         <activity android:name=".ModifyProfile" />
         <activity
             android:name=".checkProfile"

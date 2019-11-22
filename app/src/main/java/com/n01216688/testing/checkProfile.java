@@ -62,7 +62,7 @@ public class checkProfile extends AppCompatActivity {
     private void getDatabase(){
         database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String path = "userdata/" + mAuth.getUid();
+        String path = "userdata/userprofile/" + mAuth.getUid();
         myref = database.getReference(path);
     }
 
