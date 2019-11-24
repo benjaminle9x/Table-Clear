@@ -10,6 +10,10 @@
         android:title="View Profile Information"
         app:showAsAction="never" />
 
+    <item android:id="@+id/managerpage"
+        android:title="Go To Manager Page"
+        app:showAsAction="never" />
+
     <item android:id="@+id/lout"
         android:title="Logout"
         app:showAsAction="never" />

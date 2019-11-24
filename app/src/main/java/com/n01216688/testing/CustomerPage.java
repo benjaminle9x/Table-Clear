@@ -125,6 +125,9 @@ public class CustomerPage extends AppCompatActivity {
             case R.id.lout:
                 onBackPressed();
                 return true;
+            case R.id.managerpage:
+                openManagerPage();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -133,6 +136,11 @@ public class CustomerPage extends AppCompatActivity {
     public void logout() {
         FirebaseAuth.getInstance().signOut();
         openMainActivity();
+    }
+
+    public void openManagerPage(){
+        Intent i1 = new Intent(this,ManagerPage.class);
+        startActivity(i1);
     }
 
     public void openSettingScreen(){
