@@ -20,6 +20,7 @@ public class ManagerPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_page);
 
+
         getSupportActionBar().setTitle("Manager Page");
     }
 
