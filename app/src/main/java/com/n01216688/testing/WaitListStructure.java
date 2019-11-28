@@ -1,67 +1,67 @@
 package com.n01216688.testing;
 
 public class WaitListStructure {
-    private String cName;
-    private String cPhone;
-    private int cSize;
-    private String rName;
-    private String cTime;
-    private String tNo;
+    private String cname;
+    private String cphone;
+    private String csize;
+    private String rname;
+    private String ctime;
+    private String ctable;
 
-    public WaitListStructure(String cName, String cPhone, int cSize, String rName, String cTime, String tNo) {
-        this.cName = cName;
-        this.cPhone = cPhone;
-        this.cSize = cSize;
-        this.rName = rName;
-        this.cTime = cTime;
-        this.tNo = tNo;
+    public WaitListStructure(String cname, String cphone, String csize, String rname, String ctime, String ctable) {
+        this.cname = cname;
+        this.cphone = cphone;
+        this.csize = csize;
+        this.rname = rname;
+        this.ctime = ctime;
+        this.ctable = ctable;
     }
 
-    public String getcName() {
-        return cName;
+    public String getCname() {
+        return cname;
     }
 
-    public void setcName(String cName) {
-        this.cName = cName;
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 
-    public String getcPhone() {
-        return cPhone;
+    public String getCphone() {
+        return cphone;
     }
 
-    public void setcPhone(String cPhone) {
-        this.cPhone = cPhone;
+    public void setCphone(String cphone) {
+        this.cphone = cphone;
     }
 
-    public int getcSize() {
-        return cSize;
+    public String getCsize() {
+        return csize;
     }
 
-    public void setcSize(int cSize) {
-        this.cSize = cSize;
+    public void setCsize(String csize) {
+        this.csize = csize;
     }
 
-    public String getrName() {
-        return rName;
+    public String getRname() {
+        return rname;
     }
 
-    public void setrName(String rName) {
-        this.rName = rName;
+    public void setRname(String rname) {
+        this.rname = rname;
     }
 
-    public String getcTime() {
-        return cTime;
+    public String getCtime() {
+        return ctime;
     }
 
-    public void setcTime(String cTime) {
-        this.cTime = cTime;
+    public void setCtime(String ctime) {
+        this.ctime = ctime;
     }
 
-    public String gettNo() {
-        return tNo;
+    public String getCtable() {
+        return ctable;
     }
 
-    public void settNo(String tNo) {
-        this.tNo = tNo;
+    public void setCtable(String ctable) {
+        this.ctable = ctable;
     }
 }

@@ -2,6 +2,8 @@ package com.n01216688.testing;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,7 +15,13 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class ManagerPage extends AppCompatActivity {
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +30,18 @@ public class ManagerPage extends AppCompatActivity {
 
 
         getSupportActionBar().setTitle("Manager Page");
+
+        ArrayList<WaitListStructure> waitlist = new ArrayList<>();
+        waitlist.add(new WaitListStructure("Benjamin Le", "437-235-6499", "3", "Subway", "15:05", "15"));
+        waitlist.add(new WaitListStructure("Daniel West", "111-111-1111", "2", "KFC", "22:00", "9"));
+        waitlist.add(new WaitListStructure("Hyoje Lee", "010-212-4344", "4", "Huong Que", "13:01", "21"));
+
+        mRecyclerView = findViewById(R.id.r_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new WaitListAdapter(waitlist);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
